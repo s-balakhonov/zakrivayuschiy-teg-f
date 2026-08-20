@@ -13,4 +13,118 @@
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  font-family: var(--font), sans-serif;
+  font-variation-settings: "wght" var(--card-text-weight);
+  background-image: var(--background);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.header {
+  margin-block-start: 100px;
+  margin-block-end: 98px;
+  padding-inline: 122.5px;
+  padding-block: 130px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.block {
+  margin-inline: auto;
+  inline-size: fit-content; /* TODO: расчитать ширину через clamp, вынести в отдельный класс, создать переменную */ 
+  max-inline-size: 700px;
+  border: 2px solid #000;
+}
+
+.header__logo {
+  font-family: var(--accent-font, 'PressStart2P');
+  font-weight: 400;
+  font-style: normal;
+  font-size: 65px;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: var(--accent-font, 'PressStart2P');
+  font-weight: 400;
+  font-style: normal;
+  font-size: 23px;
+  text-transform: uppercase;
+}
+
+.content {
+
+}
+
+.cards-list {
+
+}
+
+.cards-list__item {
+
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.card__title {
+  padding-inline: 10px;
+  padding-block: 4px;
+  font-family: var(--font, 'Inter-Variable');
+  font-weight: var(--card-title-weight, 715);
+  font-style: var(--text-color);
+  font-size: 18px;
+}
+
+.card__image {
+  width: 100%;
+  position: relative;
+}
+
+.card__image::after {
+  /* content: '</HTML>'; */
+  content: '&lt;/HTML&gt;';
+  position: absolute;
+  inset-inline-end: 10px;
+  inset-block-start: 10px;
+  /* top: 10px; */
+  /* right: 10px; */
+  z-index: 1;
+  font-family: var(--accent-font, 'PressStart2P');
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--text-color, #000);
+}
+
+
+.card__text {
+  padding: 25px;
+  font-family: var(--font, 'Inter-Variable');
+  font-weight: 410;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.card__text-paragraph {
+
+}
+
+.card__button {
+  margin-inline-start: auto;
+  margin-inline-end: 25px;
+  margin-block-end: 25px;
+}
+
+.card__button::before {
+
 }

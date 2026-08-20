@@ -9,10 +9,36 @@
     <link rel="stylesheet" href="./styles/globals.css" />
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/animations.css" />
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
   </head>
   <body class="page">
-    <header class="header"></header>
-    <main></main>
+    <header class="header block">
+      <div class="header__logo">&lt;/HTML&gt;</div>
+      <h1 class="title">закрывающий тег</h1>
+    </header>
+    <main class="content">
+      <ul class="cards-list">
+        <li class="cards-list__item">
+          <article class="card block">
+            <h2 class="card__title">Фритрек и нулевой спринт: Подготовка к работе</h2>
+            <img class="card__image" src="./images/vehicle.png" alt="Мультяшный фургон-киоск на фоне леса и луны">
+            <div class="card__text">
+              <p class="card__text-paragraph">
+                Это было самое начало пути. 
+                На этом этапе важно было проникнуться основами и настроиться на учёбу. 
+                И, возможно, подумать, как новые знания могут повлиять на ваше будущее.
+              </p>
+              <p class="card__text-paragraph">
+                Место для ваших воспоминаний о начале обучения.
+              </p>
+            </div>
+            <button class="card__button"><span>Like</span></button>
+          </article>
+        </li>
+      </ul>
+    </main>
     <script src="./scripts/like.js"></script>
   </body>
 </html>
