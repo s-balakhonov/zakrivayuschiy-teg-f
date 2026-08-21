@@ -26,8 +26,8 @@
   margin-block-end: 98px;
   padding-inline: 122.5px;
   padding-block: 130px;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   gap: 20px;
   justify-content: center;
   align-items: center;
@@ -57,11 +57,13 @@
 }
 
 .content {
-
+  margin-block-end: 100px;
 }
 
 .cards-list {
-
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }
 
 .cards-list__item {
@@ -72,6 +74,8 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  background-color: var(--bg-color, #fff);
+  position: relative;
 }
 
 .card__title {
@@ -83,19 +87,20 @@
   font-size: 18px;
 }
 
-.card__image {
-  width: 100%;
+.card__image-section {
   position: relative;
 }
 
-.card__image::after {
-  /* content: '</HTML>'; */
-  content: '&lt;/HTML&gt;';
+.card__image {
+  width: 100%;
+  border: 2px solid #000;
+}
+
+.card__watermark {
+  display: block;
   position: absolute;
-  inset-inline-end: 10px;
-  inset-block-start: 10px;
-  /* top: 10px; */
-  /* right: 10px; */
+  inset-inline-end: 25px;
+  inset-block-start: 25px;
   z-index: 1;
   font-family: var(--accent-font, 'PressStart2P');
   font-weight: 400;
@@ -103,7 +108,18 @@
   font-size: 14px;
   text-transform: uppercase;
   color: var(--text-color, #000);
+  text-shadow: var(--bg-color, #fff);
+  mix-blend-mode: hard-light;
 }
+
+@supports((text-stroke: 1px var(--bg-color, #fff)) or (-webkit-text-stroke: 1px var(--bg-color, #fff))) {
+  .card__watermark {
+    -webkit-text-stroke: 1px var(--bg-color, #fff);
+    text-stroke: 1px var(--bg-color, #fff);
+    text-shadow: none;
+  }
+} 
+
 
 
 .card__text {
@@ -113,18 +129,88 @@
   font-style: normal;
   font-size: 18px;
   line-height: 21px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
 .card__text-paragraph {
+}
 
+.button {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color, #fff);
+  border: none;
 }
 
 .card__button {
+  gap: 12px;
   margin-inline-start: auto;
   margin-inline-end: 25px;
   margin-block-end: 25px;
+
 }
 
-.card__button::before {
+.button__text {
+  padding-inline: 37px;
+  padding-block: 12.5px;
+  border: 2px solid #000;
+  font-family: var(--accent-font, 'PressStart2P');
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 90%;
+}
+
+.content__button {
+  margin-inline: auto;
+  margin-block-start: 50px;
+  padding-inline: 20px;
+  padding-block: 17px;
+
+}
+
+.content__button svg {
+  inline-size: 21px;
+  block-size: 21px;
+}
+
+.button::before {
+  background-image: url(../svg/heart.svg);
+  position: absolute;
+  width: 27px;
+  height: 24px;
+  fill: #000;
+  right: -12px;
+}
+
+dialog {
+  display: none;
+  padding: 30px;
+}
+
+dialog[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+dialog::backdrop {
+  /* стилизовать фон */
+}
+
+@media (width <= 375px) {
+  .button {
+    flex-direction: column;
+  }
+
+  .content__button svg {
+    inline-size: 28px;
+    block-size: 28px;
+  }
 
 }

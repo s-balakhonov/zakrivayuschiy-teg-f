@@ -3,6 +3,7 @@
     --font: 'Inter-Variable';
     --accent-font: 'PressStart2P';
     --text-color: #000;
+    --bg-color: #fff;
 
     --card-text-weight: ;
     --card-title-weight: 715;
@@ -27,7 +28,7 @@
             var(--bg-repeatind-gradient-color) 2px,
             var(--bg-repeatind-gradient-tranparent-color) 2px,
             var(--bg-repeatind-gradient-tranparent-color) 4px
-        );
+        ),
         linear-gradient(
             to bottom,
             var(--bg-linear-color-a) 0%,
