@@ -29,7 +29,7 @@
   margin-inline: auto;
   inline-size: 100%;
   max-inline-size: 700px;
-  border: 2px solid #000;
+  border-block: 2px solid #000;
 }
 
 .header {
@@ -40,6 +40,7 @@
   gap: 20px;
   justify-content: center;
   align-items: center;
+  border: 2px solid #000;
 }
 
 .header__logo {
@@ -79,19 +80,18 @@
   font-weight: var(--card-title-weight, 715);
   font-style: var(--text-color);
   font-size: 18px;
+  border-inline: 2px solid var(--text-color, #000);
 }
 
 .card__image-section {
   position: relative;
   aspect-ratio: 1;
-  border-block-start: 2px solid #000;
-  border-block-end: 2px solid #000;
+  border: 2px solid var(--text-color, #000);
   overflow: hidden;
 }
 
 .card__image {
   block-size: 100%;
-  /* background-position: 0 100%; */
   background-size: cover; /* TODO: разобраться с размером изображения */
 }
 
@@ -147,27 +147,38 @@
   }
 } 
 
-.card__text {
+.card__content {
   padding: 25px;
-  font-family: var(--font, 'Inter-Variable');
-  font-weight: 410;
-  font-style: normal;
-  font-size: 18px;
-  line-height: 21px;
+  border-inline: 2px solid var(--text-color, #000);
+}
+
+.card__text {
   display: flex;
   flex-direction: column;
   gap: 25px;
 }
 
 .card__text-paragraph {
+  font-family: var(--font, 'Inter-Variable');
+  font-weight: 410;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.card__buttons {
+  margin-block-start: 25px;
+  inline-size: fit-content;
+  justify-self: flex-end;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
 }
 
 .button {
-  position: relative;
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  align-items: center;
+  padding: 0;
+  color: var(--text-color, #000);
   background-color: var(--bg-color, #fff);
   border: none;
 }
@@ -176,21 +187,30 @@
   cursor: pointer;
 }
 
-.button:focus-visible {
-  outline: none;
+.card__icon-button {
+  padding-inline: 5.5px;
+  padding-block: 7px;
 }
 
-.card__button {
-  gap: 12px;
-  margin-inline-start: auto;
-  margin-inline-end: 21px;
-  margin-block-end: 25px;
+.card__icon-button:focus-visible {
+  outline: 2px solid var(--text-color, #000);
 }
 
-.button__text {
+.like-icon {
+  inline-size: 27px;
+  block-size: 24px;
+}
+
+.card__like-button {
   padding-inline: 35px;
   padding-block: 10.5px;
-  border: 2px solid #000;
+}
+
+
+/* .card__button {
+} */
+
+.button__text {
   font-family: var(--accent-font, 'PressStart2P');
   font-weight: 400;
   font-style: normal;
@@ -199,26 +219,16 @@
 }
 
 .content__button {
-  margin-inline: auto;
+  /* margin-inline: auto; */
   margin-block-start: 50px;
   padding-inline: 20px;
   padding-block: 17px;
-
 }
 
 .content__button svg {
   inline-size: 21px;
   block-size: 21px;
 }
-
-/* .button::before {
-  background-image: url(../svg/heart.svg);
-  position: absolute;
-  width: 27px;
-  height: 24px;
-  fill: #000;
-  right: -12px;
-} */
 
 .dialog {
   position: fixed;
@@ -266,6 +276,29 @@
   line-height: 150%;
   text-transform: uppercase;
   color: inherit;
+}
+
+.card__like-button:hover::after,
+.content__button:hover::after,
+.dialog__button:hover::after {
+
+}
+
+
+.card__like-button,
+.content__button,
+.dialog__button {
+  border: 2px solid var(--text-color, #000);
+  transition: box-shadow 0.3s ease;
+}
+
+
+.card__like-button:focus-visible,
+.content__button:focus-visible,
+.dialog__button:focus-visible {
+  scale: 1;
+  translate();
+  box-shadow: 2px 2px 0 var(--text-color, #000);
 }
 
 @media (width <= 375px) {
