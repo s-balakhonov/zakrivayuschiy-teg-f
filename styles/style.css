@@ -21,30 +21,32 @@
   background-attachment: fixed;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background-color: var(--bg-color, #fff);
+  margin-inline: auto;
+  inline-size: 100%;
+  max-inline-size: 700px;
+  border: 2px solid #000;
+}
+
 .header {
   margin-block-start: 100px;
   margin-block-end: 98px;
-  padding-inline: 122.5px;
-  padding-block: 130px;
-  /* display: flex;
-  flex-direction: column; */
+  padding-inline: clamp(1rem, -6.6803rem + 32.7692vw, 7.65625rem);
+  padding-block: clamp(7.625rem, 7.0481rem + 2.4615vw, 8.125rem);
   gap: 20px;
   justify-content: center;
   align-items: center;
-}
-
-.block {
-  margin-inline: auto;
-  inline-size: fit-content; /* TODO: расчитать ширину через clamp, вынести в отдельный класс, создать переменную */ 
-  max-inline-size: 700px;
-  border: 2px solid #000;
 }
 
 .header__logo {
   font-family: var(--accent-font, 'PressStart2P');
   font-weight: 400;
   font-style: normal;
-  font-size: 65px;
+  font-size: clamp(3.0625rem, 1.9087rem + 4.9231vw, 4.0625rem);
   text-transform: uppercase;
 }
 
@@ -52,7 +54,7 @@
   font-family: var(--accent-font, 'PressStart2P');
   font-weight: 400;
   font-style: normal;
-  font-size: 23px;
+  font-size: clamp(0.875rem, 0.226rem + 2.7692vw, 1.4375rem);
   text-transform: uppercase;
 }
 
@@ -70,14 +72,6 @@
 
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  background-color: var(--bg-color, #fff);
-  position: relative;
-}
-
 .card__title {
   padding-inline: 10px;
   padding-block: 4px;
@@ -89,11 +83,44 @@
 
 .card__image-section {
   position: relative;
+  aspect-ratio: 1;
+  border-block-start: 2px solid #000;
+  border-block-end: 2px solid #000;
+  overflow: hidden;
 }
 
 .card__image {
-  width: 100%;
-  border: 2px solid #000;
+  block-size: 100%;
+  /* background-position: 0 100%; */
+  background-size: cover; /* TODO: разобраться с размером изображения */
+}
+
+.image__grayscale {
+  filter: grayscale(0.7);
+}
+
+.image__saturate {
+  filter: saturate(300%);
+}
+
+.image__hue-rotate {
+  filter: hue-rotate(-90deg);
+}
+
+.image__invert {
+  filter: invert(0.8);
+}
+
+.image__blur {
+  filter: blur(5px);
+}
+
+.image__sepia {
+  filter: sepia(80%);
+}
+
+.image__multiple-filter {
+  filter: invert(0.8) sepia(70%) blur(2px) hue-rotate(10deg);
 }
 
 .card__watermark {
@@ -120,8 +147,6 @@
   }
 } 
 
-
-
 .card__text {
   padding: 25px;
   font-family: var(--font, 'Inter-Variable');
@@ -147,17 +172,24 @@
   border: none;
 }
 
+.button:hover {
+  cursor: pointer;
+}
+
+.button:focus-visible {
+  outline: none;
+}
+
 .card__button {
   gap: 12px;
   margin-inline-start: auto;
-  margin-inline-end: 25px;
+  margin-inline-end: 21px;
   margin-block-end: 25px;
-
 }
 
 .button__text {
-  padding-inline: 37px;
-  padding-block: 12.5px;
+  padding-inline: 35px;
+  padding-block: 10.5px;
   border: 2px solid #000;
   font-family: var(--accent-font, 'PressStart2P');
   font-weight: 400;
@@ -179,32 +211,65 @@
   block-size: 21px;
 }
 
-.button::before {
+/* .button::before {
   background-image: url(../svg/heart.svg);
   position: absolute;
   width: 27px;
   height: 24px;
   fill: #000;
   right: -12px;
-}
+} */
 
-dialog {
-  display: none;
-  padding: 30px;
-}
-
-dialog[open] {
+.dialog {
+  position: fixed;
+  inset: 0;
+  padding-inline: 30px;
+  padding-block: 30px;
   display: flex;
   flex-direction: column;
   gap: 30px;
+  transition: opacity 0.3s ease-in-out;
 }
 
-dialog::backdrop {
-  /* стилизовать фон */
+.dialog .button,
+.dialog .button .button__text {
+  inline-size: 100%;
+}
+
+.dialog:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.7);
+}
+
+.dialog__content {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  color: var(--text-color);
+}
+
+.dialog__content svg {
+  inline-size: 39px;
+  block-size: 39px;
+}
+
+.dialog__content p {
+  max-inline-size: 234px;
+  font-family: var(--accent-font, PressStart2P);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 150%;
+  text-transform: uppercase;
+  color: inherit;
 }
 
 @media (width <= 375px) {
-  .button {
+  .content__button {
     flex-direction: column;
   }
 
@@ -213,4 +278,7 @@ dialog::backdrop {
     block-size: 28px;
   }
 
+  .dialog {
+    padding-inline: 40px;
+  }
 }
