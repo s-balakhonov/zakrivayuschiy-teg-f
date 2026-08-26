@@ -61,6 +61,9 @@
 
 .content {
   margin-block-end: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cards-list {
@@ -87,12 +90,17 @@
   position: relative;
   aspect-ratio: 1;
   border: 2px solid var(--text-color, #000);
+  display: flex;
+  justify-content: center; /* Центрирует картинку по горизонтали */
+  align-items: center;  
   overflow: hidden;
 }
 
 .card__image {
   block-size: 100%;
-  background-size: cover; /* TODO: разобраться с размером изображения */
+  inline-size: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .image__grayscale {
@@ -137,6 +145,10 @@
   color: var(--text-color, #000);
   text-shadow: var(--bg-color, #fff);
   mix-blend-mode: hard-light;
+}
+
+.sparks {
+  opacity: 0;
 }
 
 @supports((text-stroke: 1px var(--bg-color, #fff)) or (-webkit-text-stroke: 1px var(--bg-color, #fff))) {
@@ -187,6 +199,14 @@
   cursor: pointer;
 }
 
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: none;
+}
+
 .card__icon-button {
   padding-inline: 5.5px;
   padding-block: 7px;
@@ -204,22 +224,25 @@
 .card__like-button {
   padding-inline: 35px;
   padding-block: 10.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
-/* .card__button {
-} */
-
 .button__text {
+  position: relative;
+  z-index: 1;
+  padding: 0;
   font-family: var(--accent-font, 'PressStart2P');
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
   line-height: 90%;
+  color: var(--bg-color);
+  mix-blend-mode: difference;
 }
 
 .content__button {
-  /* margin-inline: auto; */
   margin-block-start: 50px;
   padding-inline: 20px;
   padding-block: 17px;
@@ -278,27 +301,41 @@
   color: inherit;
 }
 
-.card__like-button:hover::after,
-.content__button:hover::after,
-.dialog__button:hover::after {
-
+.dialog__button {
+  padding-block: 12.5px;
 }
-
 
 .card__like-button,
 .content__button,
 .dialog__button {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-color, #fff);
   border: 2px solid var(--text-color, #000);
   transition: box-shadow 0.3s ease;
 }
 
-
 .card__like-button:focus-visible,
 .content__button:focus-visible,
 .dialog__button:focus-visible {
-  scale: 1;
-  translate();
   box-shadow: 2px 2px 0 var(--text-color, #000);
+}
+
+.card__like-button::after,
+.content__button::after,
+.dialog__button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--text-color, #000);
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(-100%);
+}
+
+.card__like-button:hover::after,
+.content__button:hover::after,
+.dialog__button:hover::after {
+  transform: translateX(0%);
 }
 
 @media (width <= 375px) {

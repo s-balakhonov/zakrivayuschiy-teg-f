@@ -4,6 +4,7 @@
     --accent-font: 'PressStart2P';
     --text-color: #000;
     --bg-color: #fff;
+    --animation-heart-color: red;
 
     --card-text-weight: ;
     --card-title-weight: 715;
@@ -37,4 +38,8 @@
         );
 
     --block-width: ;
+
+    --contour-heart-color: var(--text-color);
+    --sparks-heart-color: var(--animation-heart-color);
+
 }

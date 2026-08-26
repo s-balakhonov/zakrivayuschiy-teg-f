@@ -10,12 +10,59 @@
 
 */
 
-@keyframes filling {
+@keyframes pulse {
   from {
-    scale: 0;
-    transitionX: -100%;
+    transform: scale(1);
   }
   to {
-    scale: 1;
+    transform: scale(1.25);
   }
+}
+
+@keyframes spark-flash {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.like-icon {
+  transform-origin: center;
+}
+
+.like-icon.is-liked .heart {
+  animation: pulse-heart 0.3s ease-in forwards;
+}
+
+.like-icon.is-liked .sparks {
+  animation: spark-flash 0.3s ease-in forwards;
+} 
+
+.contour {
+  fill: var(--contour-color);
+  transition: fill 0.1s linear 0s;
+}
+
+.core {
+  fill: transparent;
+  transition: fill 0.3s linear 0.03s;
+}
+
+.like-icon:hover .core {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s linear 0s;
+}
+
+.main-body {
+  transition: fill 0.3s linear 0s;
+}
+
+.like-icon:hover .main-body {
+  transition: fill 0.3s linear 0.05s;
+}
+
+.sparks {
+
 }
