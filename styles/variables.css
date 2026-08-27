@@ -6,7 +6,7 @@
     --bg-color: #fff;
     --animation-heart-color: red;
 
-    --card-text-weight: ;
+    --card-text-weight: 410;
     --card-title-weight: 715;
 
     --bg-repeatind-gradient-color: #d3d3d3;
@@ -36,8 +36,6 @@
             var(--bg-linear-color-a) 0.01%,
             var(--bg-linear-color-b) 100%
         );
-
-    --block-width: ;
 
     --contour-heart-color: var(--text-color);
     --sparks-heart-color: var(--animation-heart-color);

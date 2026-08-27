@@ -72,10 +72,6 @@
   gap: 50px;
 }
 
-.cards-list__item {
-
-}
-
 .card__title {
   padding-inline: 10px;
   padding-block: 4px;
@@ -172,7 +168,7 @@
 
 .card__text-paragraph {
   font-family: var(--font, 'Inter-Variable');
-  font-weight: 410;
+  font-weight: var(--card-text-weight, 410);
   font-style: normal;
   font-size: 18px;
   line-height: 21px;
@@ -222,7 +218,7 @@
 }
 
 .card__like-button {
-  padding-inline: 35px;
+  min-inline-size: 130px;
   padding-block: 10.5px;
   display: inline-flex;
   align-items: center;
