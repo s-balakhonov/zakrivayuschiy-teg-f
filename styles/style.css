@@ -76,7 +76,7 @@
   padding-inline: 10px;
   padding-block: 4px;
   font-family: var(--font, 'Inter-Variable');
-  font-weight: var(--card-title-weight, 715);
+  font-variation-settings: "wght" var(--card-title-weight, 715);
   font-style: var(--text-color);
   font-size: 18px;
   border-inline: 2px solid var(--text-color, #000);
@@ -179,7 +179,7 @@
   inline-size: fit-content;
   justify-self: flex-end;
   display: flex;
-  gap: 12px;
+  gap: 7px;
   justify-content: center;
   align-items: center;
 }
@@ -204,8 +204,8 @@
 }
 
 .card__icon-button {
-  padding-inline: 5.5px;
-  padding-block: 7px;
+  inline-size: 38px;
+  block-size: 38px;
 }
 
 .card__icon-button:focus-visible {
@@ -213,13 +213,13 @@
 }
 
 .like-icon {
-  inline-size: 27px;
-  block-size: 24px;
+  inline-size: 39px;
+  block-size: 36px;
 }
 
 .card__like-button {
   min-inline-size: 130px;
-  padding-block: 10.5px;
+  min-block-size: 38px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
