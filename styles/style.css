@@ -29,7 +29,7 @@
   margin-inline: auto;
   inline-size: 100%;
   max-inline-size: 700px;
-  border-block: 2px solid #000;
+  border-block: 2px solid var(--text-color, #000);
 }
 
 .header {
@@ -40,11 +40,11 @@
   gap: 20px;
   justify-content: center;
   align-items: center;
-  border: 2px solid #000;
+  border: 2px solid var(--text-color, #000);
 }
 
 .header__logo {
-  font-family: var(--accent-font, "PressStart2P");
+  font-family: var(--accent-font, "PressStart2P", fantasy);
   font-weight: 400;
   font-style: normal;
   font-size: clamp(3.0625rem, 1.9087rem + 4.9231vw, 4.0625rem);
@@ -53,7 +53,7 @@
 }
 
 .title {
-  font-family: var(--accent-font, "PressStart2P");
+  font-family: var(--accent-font, "PressStart2P", fantasy);
   font-weight: 400;
   font-style: normal;
   font-size: clamp(0.875rem, 0.226rem + 2.7692vw, 1.4375rem);
@@ -74,9 +74,10 @@
 }
 
 .card__title {
+  min-block-size: 30px;
   padding-inline: 10px;
-  padding-block: 4px;
-  font-family: var(--font, "Inter-Variable");
+  padding-block: 4.3px;
+  font-family: var(--font, "Inter-Variable", sans-serif);
   font-variation-settings: "wght" var(--card-title-weight, 715);
   font-style: var(--text-color);
   font-size: 18px;
@@ -134,10 +135,11 @@
   inset-inline-end: 25px;
   inset-block-start: 25px;
   z-index: 1;
-  font-family: var(--accent-font, "PressStart2P");
+  font-family: var(--accent-font, "PressStart2P", fantasy);
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
+  opacity: 50%;
   text-transform: uppercase;
   color: var(--text-color, #000);
   text-shadow: var(--bg-color, #fff);
@@ -171,8 +173,8 @@
 }
 
 .card__text-paragraph {
-  font-family: var(--font, "Inter-Variable");
-  font-weight: var(--card-text-weight, 410);
+  font-family: var(--font, "Inter-Variable", sans-serif);
+  font-variation-settings: "wght" var(--card-text-weight, 410);
   font-style: normal;
   font-size: 18px;
   line-height: 21px;
@@ -182,7 +184,6 @@
   margin-block-start: 25px;
   inline-size: fit-content;
   margin-inline: auto 0;
-  /* justify-self: flex-end; */
   display: flex;
   gap: 7px;
   justify-content: center;
@@ -191,9 +192,17 @@
 
 .button {
   padding: 0;
+  min-inline-size: 130px;
+  min-block-size: 38px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   color: var(--text-color, #000);
   background-color: var(--bg-color, #fff);
-  border: none;
+  border: 2px solid var(--text-color, #000);
+  transition: box-shadow 0.3s ease;
 }
 
 .button:hover {
@@ -206,11 +215,29 @@
 
 .button:focus-visible {
   outline: none;
+  box-shadow: 2px 2px 0 var(--text-color, #000);
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--text-color, #000);
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(-100%);
+}
+
+button:hover::after {
+  transform: translateX(0%);
 }
 
 .card__icon-button {
   inline-size: 38px;
   block-size: 38px;
+  padding: 0;
+  border: none;
+  color: var(--text-color, #000);
+  background-color: var(--bg-color, #fff);
 }
 
 .card__icon-button:focus-visible {
@@ -222,31 +249,23 @@
   block-size: 36px;
 }
 
-.card__like-button {
-  min-inline-size: 130px;
-  min-block-size: 38px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .button__text {
   position: relative;
   z-index: 1;
   padding: 0;
-  font-family: var(--accent-font, "PressStart2P");
+  font-family: var(--accent-font, "PressStart2P", fantasy);
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
   line-height: 90%;
-  color: var(--bg-color);
+  color: var(--bg-color, #fff);
   mix-blend-mode: difference;
 }
 
 .content__button {
   margin-block-start: 50px;
   padding-inline: 20px;
-  padding-block: 17px;
+  padding-block: 15px;
 }
 
 .content__button svg {
@@ -272,18 +291,13 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.dialog .button,
-.dialog .button .button__text {
-  inline-size: 100%;
-}
-
 .dialog:not([open]) {
   pointer-events: none;
   opacity: 0;
 }
 
 .dialog::backdrop {
-  background-color: var(--bg-dialog-color, rgb(0 0 0 / 0.7));
+  background-color: var(--bg-dialog-color, rgb(0 0 0 / 0.75));
 }
 
 .dialog__content {
@@ -302,7 +316,7 @@
 
 .dialog__content p {
   max-inline-size: 234px;
-  font-family: var(--accent-font, PressStart2P);
+  font-family: var(--accent-font, "PressStart2P", fantasy);
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
@@ -312,40 +326,12 @@
 }
 
 .dialog__button {
-  padding-block: 12.5px;
+  inline-size: 100%;
+  min-block-size: 38px;
 }
 
-.card__like-button,
-.content__button,
-.dialog__button {
-  position: relative;
-  overflow: hidden;
-  background-color: var(--bg-color, #fff);
-  border: 2px solid var(--text-color, #000);
-  transition: box-shadow 0.3s ease;
-}
-
-.card__like-button:focus-visible,
-.content__button:focus-visible,
-.dialog__button:focus-visible {
-  box-shadow: 2px 2px 0 var(--text-color, #000);
-}
-
-.card__like-button::after,
-.content__button::after,
-.dialog__button::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: var(--text-color, #000);
-  transition: transform 0.5s ease-in-out;
-  transform: translateX(-100%);
-}
-
-.card__like-button:hover::after,
-.content__button:hover::after,
-.dialog__button:hover::after {
-  transform: translateX(0%);
+.dialog__button .button__text {
+  text-transform: uppercase;
 }
 
 @media (width <= 375px) {
