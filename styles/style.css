@@ -218,7 +218,7 @@
   box-shadow: 2px 2px 0 var(--text-color, #000);
 }
 
-button::after {
+.button::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -227,7 +227,7 @@ button::after {
   transform: translateX(-100%);
 }
 
-button:hover::after {
+.button:hover::after {
   transform: translateX(0%);
 }
 
